@@ -26,7 +26,7 @@ Button button;
 SearchView textsearch;
 TextView showtext;
 String searchtext;
-BufferedReader br;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
