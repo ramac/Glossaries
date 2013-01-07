@@ -12,6 +12,7 @@
         
     </string-array>
         <string name="button2">HOME</string>
-        <string name="search_hint">Type here</string>
+        <string name="search_hint">search Text</string>
+        <string name="search">searchbutton</string>
 
 </resources>

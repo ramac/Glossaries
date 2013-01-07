@@ -5,18 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-
-
     <SearchView
         android:id="@+id/searchview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:iconifiedByDefault="false"
-        android:imeOptions="actionSearch" >
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:saveEnabled="true" >
+
     </SearchView>
-    <ListView android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
-</ListView>
+
+    <Button
+        android:id="@+id/searchbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"

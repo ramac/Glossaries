@@ -9,7 +9,7 @@ package com.example.glossaries;
 
 public final class R {
     public static final class array {
-        public static final int Subject=0x7f050000;
+        public static final int Subject=0x7f060000;
     }
     public static final class attr {
     }
@@ -17,27 +17,28 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f080000;
-        public static final int button1=0x7f080002;
-        public static final int menu_settings=0x7f080005;
-        public static final int searchview=0x7f080003;
-        public static final int spinner1=0x7f080001;
-        public static final int textView1=0x7f080004;
+        public static final int LinearLayout1=0x7f090000;
+        public static final int button1=0x7f090002;
+        public static final int menu_settings=0x7f090006;
+        public static final int searchbutton=0x7f090004;
+        public static final int searchview=0x7f090003;
+        public static final int spinner1=0x7f090001;
+        public static final int textView1=0x7f090005;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int searchable=0x7f030001;
-        public static final int searchscreen=0x7f030002;
+        public static final int searchscreen=0x7f030001;
     }
     public static final class menu {
-        public static final int activity_main=0x7f070000;
+        public static final int activity_main=0x7f080000;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int button=0x7f040002;
-        public static final int button2=0x7f040003;
-        public static final int menu_settings=0x7f040001;
-        public static final int search_hint=0x7f040004;
+        public static final int app_name=0x7f050000;
+        public static final int button=0x7f050002;
+        public static final int button2=0x7f050003;
+        public static final int menu_settings=0x7f050001;
+        public static final int search=0x7f050005;
+        public static final int search_hint=0x7f050004;
     }
     public static final class style {
         /** 
@@ -61,10 +62,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
+    }
+    public static final class xml {
+        public static final int searchable=0x7f040000;
     }
 }

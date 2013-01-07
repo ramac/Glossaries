@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 	
 	Button button;
 	Spinner spinner;	
-
+	String text;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				String text = String.valueOf(spinner.getSelectedItem());
+				text = String.valueOf(spinner.getSelectedItem());
 				// TODO Auto-generated method stub
 				Toast.makeText(MainActivity.this, "You selected " + text , Toast.LENGTH_SHORT).show();
 			}
