@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Glossaries</string>
+    <string name="menu_settings">Settings</string>
+    <string name="button">Select</string>
+    <string-array name="Subject">
+        <item >Java</item>
+        <item >Testing Tools</item>
+        <item >XML</item>
+        <item >Networking</item>
+        
+    </string-array>
+        <string name="button2">HOME</string>
+        <string name="search_hint">Type here</string>
+
+</resources>
