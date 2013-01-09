@@ -4,23 +4,32 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 
 //import com.example.glossaries.CustomersDbAdapter.DatabaseHelper;
 
+import android.app.SearchManager;
 import android.content.Context;
 
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.provider.BaseColumns;
 import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 private static String DB_PATH = "/data/data/com.example.glossaries/databases/";
-private static String DB_NAME ="mysqlitecopy.sqlite";
-private SQLiteDatabase sqLiteDatabase;
+private static String DB_NAME ="mysqlite.sqlite";
+private SQLiteDatabase myDB;
 private static final String TAG = "GLOSSARY_DATABASE_HELPER";
-    
+private static final HashMap<String,String> mColumnMap = buildColumnMap();
+public static final String KEY_WORD = SearchManager.SUGGEST_COLUMN_TEXT_1;
+public static final String KEY_DEFINITION = SearchManager.SUGGEST_COLUMN_TEXT_2;
+private static final String FTS_VIRTUAL_TABLE = "FTSglossary";
+
 private final Context myContext;
 
 public DatabaseHelper(Context context) {
@@ -28,7 +37,7 @@ public DatabaseHelper(Context context) {
     this.myContext = context;
     Log.w(TAG,"in constructor");
 }	
-
+      
 /* Creates a empty database on the system and rewrites it with your own database.
 * */
 public void createDataBase() throws IOException{
@@ -119,15 +128,56 @@ public void openDataBase() throws SQLException{
 	 
 	//Open the database
     String myPath = DB_PATH + DB_NAME;
-	sqLiteDatabase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.CREATE_IF_NECESSARY);
+	myDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.CREATE_IF_NECESSARY);
 
 }
 
+private Cursor query(String selection, String[] selectionArgs, String[] columns) {
+    /* The SQLiteBuilder provides a map for all possible columns requested to
+     * actual columns in the database, creating a simple column alias mechanism
+     * by which the ContentProvider does not need to know the real column names
+     */Log.w(TAG, "in query method.........");
+    SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
+    builder.setTables(FTS_VIRTUAL_TABLE);
+    builder.setProjectionMap(mColumnMap);
+
+    Cursor cursor = builder.query(myDB,columns, selection, selectionArgs, null, null, null);
+
+    if (cursor == null) {
+        return null;
+    } else if (!cursor.moveToFirst()) {
+        cursor.close();
+        return null;
+    }
+    return cursor;
+}
+
+
+private static HashMap<String,String> buildColumnMap() {
+	Log.w(TAG, "in buildcolumn map.........");
+    HashMap<String,String> map = new HashMap<String,String>();
+    map.put(KEY_WORD, KEY_WORD);
+    map.put(KEY_DEFINITION, KEY_DEFINITION);
+    map.put(BaseColumns._ID, "rowid AS " +
+            BaseColumns._ID);
+    map.put(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID, "rowid AS " +
+            SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
+    map.put(SearchManager.SUGGEST_COLUMN_SHORTCUT_ID, "rowid AS " +
+            SearchManager.SUGGEST_COLUMN_SHORTCUT_ID);
+    return map;
+}
+
+
+public Cursor getWordMatches(String query, String[] columns) {
+    String selection = KEY_WORD + " MATCH ?";
+    String[] selectionArgs = new String[] {query+"*"};
+    return query(selection, selectionArgs, columns);
+    }
 @Override
 public synchronized void close() {
 
-	    if(sqLiteDatabase != null)
-		    sqLiteDatabase.close();
+	    if(myDB != null)
+		    myDB.close();
 
 	    super.close();
 
