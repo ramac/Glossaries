@@ -22,13 +22,16 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 private static String DB_PATH = "/data/data/com.example.glossaries/databases/";
+
 private static String DB_NAME ="mysqlite.sqlite";
 private SQLiteDatabase myDB;
 private static final String TAG = "GLOSSARY_DATABASE_HELPER";
 private static final HashMap<String,String> mColumnMap = buildColumnMap();
-public static final String KEY_WORD = SearchManager.SUGGEST_COLUMN_TEXT_1;
-public static final String KEY_DEFINITION = SearchManager.SUGGEST_COLUMN_TEXT_2;
-private static final String FTS_VIRTUAL_TABLE = "FTSglossary";
+//public static final String KEY_WORD = SearchManager.SUGGEST_COLUMN_TEXT_1;
+public static final String KEY_WORD = "word";
+public static final String KEY_DESC = "desc";
+//public static final String KEY_DESC = SearchManager.SUGGEST_COLUMN_TEXT_2;
+//private static final String FTS_VIRTUAL_TABLE = "FTSglossary";
 
 private final Context myContext;
 
@@ -138,9 +141,9 @@ private Cursor query(String selection, String[] selectionArgs, String[] columns)
      * by which the ContentProvider does not need to know the real column names
      */Log.w(TAG, "in query method.........");
     SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
-    builder.setTables(FTS_VIRTUAL_TABLE);
+    builder.setTables("Java");
     builder.setProjectionMap(mColumnMap);
-
+    openDataBase();
     Cursor cursor = builder.query(myDB,columns, selection, selectionArgs, null, null, null);
 
     if (cursor == null) {
@@ -157,7 +160,7 @@ private static HashMap<String,String> buildColumnMap() {
 	Log.w(TAG, "in buildcolumn map.........");
     HashMap<String,String> map = new HashMap<String,String>();
     map.put(KEY_WORD, KEY_WORD);
-    map.put(KEY_DEFINITION, KEY_DEFINITION);
+    map.put(KEY_DESC, KEY_DESC);
     map.put(BaseColumns._ID, "rowid AS " +
             BaseColumns._ID);
     map.put(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID, "rowid AS " +
@@ -169,8 +172,8 @@ private static HashMap<String,String> buildColumnMap() {
 
 
 public Cursor getWordMatches(String query, String[] columns) {
-    String selection = KEY_WORD + " MATCH ?";
-    String[] selectionArgs = new String[] {query+"*"};
+    String selection = KEY_WORD + " like ?";
+    String[] selectionArgs = new String[] {query+"%"};
     return query(selection, selectionArgs, columns);
     }
 @Override

@@ -12,7 +12,8 @@
         
     </string-array>
         <string name="button2">HOME</string>
-        <string name="search_hint">search Text</string>
+        <string name="search_hint">Type Word Here</string>
         <string name="search">searchbutton</string>
-
+        <string name="no_results">Sorry!! No Results found</string>
+		<string name="search_description">Search in Glossary app</string>
 </resources>
