@@ -5,12 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
-
-//import com.example.glossaries.CustomersDbAdapter.DatabaseHelper;
-
-import android.app.SearchManager;
 import android.content.Context;
-
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,11 +22,8 @@ private static String DB_NAME ="mysqlite.sqlite";
 private SQLiteDatabase myDB;
 private static final String TAG = "GLOSSARY_DATABASE_HELPER";
 private static final HashMap<String,String> mColumnMap = buildColumnMap();
-//public static final String KEY_WORD = SearchManager.SUGGEST_COLUMN_TEXT_1;
 public static final String KEY_WORD = "word";
 public static final String KEY_DESC = "desc";
-//public static final String KEY_DESC = SearchManager.SUGGEST_COLUMN_TEXT_2;
-//private static final String FTS_VIRTUAL_TABLE = "FTSglossary";
 
 private final Context myContext;
 
@@ -45,16 +37,13 @@ public DatabaseHelper(Context context) {
 * */
 public void createDataBase() throws IOException{
 	Log.w(TAG,"in create DB");
-	//boolean dbExist = checkDataBase();
+	
 	boolean dbExist = false;
 
 	if(dbExist){
-		//do nothing - database already exist
-		Log.w(TAG,"DB already exists");
-		
+	
 	}else{
-		//By calling this method an empty database will be created into the default system path
-        //of your application so we are gonna be able to overwrite that database with our database.
+		
    	this.getReadableDatabase();
 
    	try {
@@ -67,39 +56,6 @@ public void createDataBase() throws IOException{
 	}
 
 }
-/**
- * Check if the database already exist to avoid re-copying the file each time you open the application.
- * @return true if it exists, false if it doesn't
- */
-private boolean checkDataBase(){
-	Log.w(TAG,"in CheckDataBase");
-	SQLiteDatabase checkDB = null;
-
-	try{
-		String myPath = DB_PATH + DB_NAME;
-		Log.w(TAG,myPath);
-		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.CREATE_IF_NECESSARY);
-		
-	}catch(SQLiteException e){
-
-		 Log.e(TAG, "Received an exception", e); 
-
-	}
-
-	if(checkDB != null){
-
-		checkDB.close();
-
-	}
-
-	return checkDB != null ? true : false;
-}
-
-/**
- * Copies your database from your local assets-folder to the just created empty database in the
- * system folder, from where it can be accessed and handled.
- * This is done by transfering bytestream.
- * */
 private void copyDataBase() throws IOException{
 	Log.w(TAG,"in copyDatabase");
 
@@ -150,9 +106,11 @@ private Cursor query(String selection, String[] selectionArgs, String[] columns)
         return null;
     } else if (!cursor.moveToFirst()) {
         cursor.close();
+        close();
         return null;
     }
     return cursor;
+    
 }
 
 
@@ -162,16 +120,13 @@ private static HashMap<String,String> buildColumnMap() {
     map.put(KEY_WORD, KEY_WORD);
     map.put(KEY_DESC, KEY_DESC);
     map.put(BaseColumns._ID, "rowid AS " +
-            BaseColumns._ID);
-    map.put(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID, "rowid AS " +
-            SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
-    map.put(SearchManager.SUGGEST_COLUMN_SHORTCUT_ID, "rowid AS " +
-            SearchManager.SUGGEST_COLUMN_SHORTCUT_ID);
+            BaseColumns._ID);   
     return map;
 }
 
 
 public Cursor getWordMatches(String query, String[] columns) {
+	Log.w(TAG,"in get word matches");
     String selection = KEY_WORD + " like ?";
     String[] selectionArgs = new String[] {query+"%"};
     return query(selection, selectionArgs, columns);
@@ -195,10 +150,6 @@ Log.w(TAG,"on db create");
 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 }
-
-
-//Cursor cursor = sqLiteDatabase.query("Java", new String[]{"KEY_ID", "KEY_word", "KEY_desc"}, null, null, null, null, null);
-
 
 
 

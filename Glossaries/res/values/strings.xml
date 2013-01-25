@@ -5,13 +5,10 @@
     <string name="menu_settings">Settings</string>
     <string name="button">Select</string>
     <string-array name="Subject">
-        <item >Java</item>
-        <item >Testing Tools</item>
-        <item >XML</item>
-        <item >Networking</item>
+        
         
     </string-array>
-        <string name="button2">HOME</string>
+       
         <string name="search_hint">Type Word Here</string>
         <string name="search">searchbutton</string>
         <string name="no_results">Sorry!! No Results found</string>

@@ -3,14 +3,20 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
+    android:visibility="visible"
     tools:context=".MainActivity" >
 
     <ImageView
         android:id="@+id/imageview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal|center"
+        android:adjustViewBounds="true"
         android:background="@drawable/books"
-        />
+        android:padding="10dp" />
+    
 
 </LinearLayout>

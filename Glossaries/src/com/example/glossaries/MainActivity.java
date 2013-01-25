@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 	Intent intent;
@@ -12,6 +14,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		ImageView im = (ImageView)findViewById(R.id.imageview);
+		im.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation));
+		
+		
 		new Thread()
 	    {
 	      public void run()
@@ -24,8 +30,8 @@ public class MainActivity extends Activity {
 	            int j = MainActivity.this.timer;
 	            if (i >= j)
 	              return;
-	            sleep(100L);
-	            i += 100;
+	            sleep(300);
+	            i += 300;
 	          }
 	        }
 	        catch (InterruptedException localInterruptedException)
@@ -33,7 +39,7 @@ public class MainActivity extends Activity {
 	          while (true)
 	        	  
 	          {
-	        	 Intent intent = new Intent(MainActivity.this,SearchScreen.class);
+	        	intent = new Intent(MainActivity.this,SearchScreen.class);
 	        	  MainActivity.this.startActivity(intent );
 	        	  MainActivity.this.finish();
 	          }
