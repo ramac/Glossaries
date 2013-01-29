@@ -6,31 +6,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <SearchView
-        android:id="@+id/searchview"
-        android:layout_width="108dp"
-        android:layout_height="42dp"
-        android:iconifiedByDefault="false"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:saveEnabled="true" >
-    </SearchView>
-
-    <ImageButton
-        android:id="@+id/mic"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_weight="1"
-        android:text="Button" />
-
     <LinearLayout
-        android:id="@+id/LinearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:orientation="vertical" >
+        android:id="@+id/rlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="fill_horizontal"
+        android:background="#ffbc00" >
+
+        <SearchView
+            android:id="@+id/searchview"
+            android:layout_width="244dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_vertical|center"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1.04"
+            android:background="@drawable/searchbar"
+            android:gravity="left"
+            android:iconifiedByDefault="false"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:saveEnabled="true" >
+
+        </SearchView>
+
+        <ImageButton
+            android:id="@+id/mic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="0.1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/mic"
+            android:scaleType="center" />
+
     </LinearLayout>
 
     <TextView
@@ -50,11 +63,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:divider="@android:drawable/divider_horizontal_dark"
             android:dividerHeight="1dp"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="8dp" >
+
         </ListView>
     </LinearLayout>
 

@@ -33,7 +33,8 @@
                    android:resource="@xml/searchable"/>         
         
         </activity>
-        <activity android:name=".WordActivity">
+        <activity android:name=".WordActivity"
+            android:configChanges="orientation|screenSize">
             </activity>
         <provider android:name="com.example.glossaries.SuggestionProvider" android:authorities="com.example.glossaries.SuggestionProvider"/>
        </application>
