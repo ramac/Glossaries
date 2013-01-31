@@ -25,27 +25,28 @@ public final class R {
         public static final int text_header=0x7f060000;
     }
     public static final class drawable {
-        public static final int books=0x7f020000;
+        public static final int backgroung=0x7f020000;
         public static final int ic_launcher=0x7f020001;
-        public static final int list_bg=0x7f020002;
-        public static final int list_item_bg=0x7f020003;
-        public static final int mic=0x7f020004;
-        public static final int result_textview_bg=0x7f020005;
-        public static final int searchbar=0x7f020006;
-        public static final int speaker_icon=0x7f020007;
+        public static final int knowit_app=0x7f020002;
+        public static final int list_bg=0x7f020003;
+        public static final int list_item_bg=0x7f020004;
+        public static final int mic=0x7f020005;
+        public static final int result_textview_bg=0x7f020006;
+        public static final int searchbar=0x7f020007;
+        public static final int speaker_icon=0x7f020008;
+        public static final int titlebar=0x7f020009;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0b0000;
-        public static final int definition=0x7f0b0003;
-        public static final int imageview=0x7f0b0001;
-        public static final int listview=0x7f0b0008;
-        public static final int menu_settings=0x7f0b000a;
-        public static final int mic=0x7f0b0006;
-        public static final int rlayout=0x7f0b0004;
-        public static final int searchview=0x7f0b0005;
-        public static final int speaker=0x7f0b0009;
-        public static final int textView1=0x7f0b0007;
-        public static final int word=0x7f0b0002;
+        public static final int definition=0x7f0b0002;
+        public static final int listview=0x7f0b0007;
+        public static final int menu_settings=0x7f0b0009;
+        public static final int mic=0x7f0b0005;
+        public static final int rlayout=0x7f0b0003;
+        public static final int searchview=0x7f0b0004;
+        public static final int speaker=0x7f0b0008;
+        public static final int textView1=0x7f0b0006;
+        public static final int word=0x7f0b0001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

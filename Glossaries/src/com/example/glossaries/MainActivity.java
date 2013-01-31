@@ -4,20 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-
 public class MainActivity extends Activity {
 	Intent intent;
-	private int timer = 1000;
+	private int timer = 2000;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		ImageView im = (ImageView)findViewById(R.id.imageview);
-		im.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation));
-		
-		
+		setContentView(R.layout.activity_main);		
 		new Thread()
 	    {
 	      public void run()
